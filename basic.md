@@ -48,7 +48,7 @@ ary2 := [...]int{1,2,3,4,5} # 自动推导数组大小，`...`不可省略，否
 
 var slc1 []int # 定义一个int类型的slice
 slc2 := []int{1,2,3,4,5} # 定义并初始化一个slice
-slc3 := make([]int, 5)	# 使用make函数，创建一个slice
+slc3 := make([]int, 5)	# 使用make函数，创建一个slice，长度和容量都设为5
 
 var map1 map[string]int # 声明一个map，key类型为string, value类型为int
 map1 = make(map[string]int) # 创建map
@@ -140,7 +140,7 @@ go语言支持如下运算符：
 | close   | 用于关闭channel	|
 | delete  | 用于删除map中的元素	|
 | len     | 用于返回string, slice和array的长度 		|
-| cap 	  |		|
+| cap 	  | 用于返回array,slice,channel的容量		|
 | new	  | 用于各种类型的内存分配		|
 | make 	  | 用于内建类型(map, slice, channel)的内存分配		|
 | append  | 用于追加slice		|
