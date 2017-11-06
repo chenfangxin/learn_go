@@ -17,7 +17,7 @@
 | complex64				| 8 		 |        |			|
 | complex128			| 16 		 |	 	  |			|
 | uintptr 				| 4或8 		 | 		  | 足以存放指针的uint	|
-| array 				| 			 | 		  | 数组，值类型  |
+| array 				| 			 | 		  | 数组，值类型,长度固定  |
 | struct 				| 			 | 		  | 结构体，值类型  |
 | string 				| 			 | "" 	  | 字符串是不可变的 |
 | slice 				| 			 | nil	  | 引用类型|
@@ -26,7 +26,7 @@
 | function 				| 			 | nil	  | 函数     |
 | interface 			|			 | nil	  | 接口     |
 
-> 所谓`引用类型`是指`slice`, `map`,`channel`这三种与定义类型。创建这些类型的数据，除了要分配内存外，还需要一系列复杂的初始化工作。
+> 所谓`引用类型`是指`slice`, `map`,`channel`这三种与定义类型。创建这些类型的数据，除了要分配内存外，还需要一系列复杂的初始化工作。使用make()函数来创建。
 
 ## 变量和常量
 
@@ -36,9 +36,26 @@
 
 在go语言中，变量的声明(declare)和定义(define)是放在一起的，也就是说变量总会被初始化。在go中，有三种形式声明变量：
 ```
-var a int = 12	# 声明变量a的类型为int，并初始化为12
-var a int		# 声明变量a的类型为int，并初始化为0
-a := 12			# 声明变量a，并通过初始值推导其类型。这种形式只能在函数体中使用
+var a int = 12 # 声明变量a的类型为int，并初始化为12
+var b int      # 声明变量b的类型为int，并初始化为0
+c := 12        # 声明变量c，并通过初始值推导其类型。这种形式只能在函数体中使用
+
+var ary1 [5]int # 定义一个5个int元素的array
+ary1[0] = 1     # 给array的元素赋值
+
+var ary2 [5]int{1,2,3,4,5} # 给array提供初始值 
+ary2 := [...]int{1,2,3,4,5} # 自动推导数组大小，`...`不可省略，否则成了slice
+
+var slc1 []int # 定义一个int类型的slice
+slc2 := []int{1,2,3,4,5} # 定义并初始化一个slice
+slc3 := make([]int, 5)	# 使用make函数，创建一个slice
+
+var map1 map[string]int # 声明一个map，key类型为string, value类型为int
+map1 = make(map[string]int) # 创建map
+map1["key1"] = 1 # 向map添加元素
+
+var map2 = map[string]int {} # 声明并初始化一个map
+map2["key2"] = 2
 ```
 
 #### 变量的赋值
@@ -121,7 +138,7 @@ go语言支持如下运算符：
 | 函数名  | 说明 |
 |---------|------|
 | close   | 用于关闭channel	|
-| delete  | 用于删除map中的实例	|
+| delete  | 用于删除map中的元素	|
 | len     | 用于返回string, slice和array的长度 		|
 | cap 	  |		|
 | new	  | 用于各种类型的内存分配		|
@@ -171,7 +188,7 @@ switch <condition> {
 ```
 go语言的`switch`语句中，每个`case`语句都是独立的，并不需要`break`跳出执行。`case`语句中有`fallthrougth`关键字，会继续执行下一个`case`。
 
-`switch`后的<condition>也**不是**必须的。
+`switch`后的<condition>**不是**必须的，每个`case`相当于一个`if`语句。
 
 
 ## 函数
