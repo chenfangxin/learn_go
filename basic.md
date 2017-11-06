@@ -111,7 +111,7 @@ go语言支持如下运算符：
 | const 		| 常量定义 					|
 | continue 		| 忽略当前循环体的余下代码 	|
 | default 		| 用于switch/select场景 	|
-| defer 		|							|
+| defer 		| 注册延时调用				|
 | else 			|							|
 | fallthrough 	|							|
 | for 			| 循环 						|
@@ -189,8 +189,4 @@ switch <condition> {
 go语言的`switch`语句中，每个`case`语句都是独立的，并不需要`break`跳出执行。`case`语句中有`fallthrougth`关键字，会继续执行下一个`case`。
 
 `switch`后的`<condition>`**不是**必须的，每个`case`相当于一个`if`语句。
-
-
-## 函数
-
 
