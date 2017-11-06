@@ -82,6 +82,8 @@ go语言支持如下运算符：
 > 语句(statement)和表达式(expression)的区别：语句表示一个操作，不能用于赋值场景。表达式除了表示一系列动作外，还有其代表的值，可以用于赋值。
 > 在go语言中，++ 和 -- 是**语句**
 
+> go语言**不支持**运算符的重载
+
 ## 关键字
 
 | 关键字 | 说明 |
@@ -135,6 +137,45 @@ go语言支持如下运算符：
 | imag    |		|
 
 ## 控制结构
+
+#### `if...else`
+`if...else`结构中，大括号是必须的,且要与if在同一行, 
+```
+if <condition> { // <condition>不用小括号
+	<statement>
+} else {
+	<statement>
+}
+
+```
+
+#### `for`循环
+go语言中`for`循环中的大括号是必须的，且要与`for`在同一行。`for`循环有3种形式：
+```
+for <init>; <condition>; <post> {
+}
+
+for <condition> {
+}
+
+for { // 死循环
+}
+```
+
+#### `switch...case`
+`switch...case`语句中，大括号也是必须的，且要与`switch`在同一行。<condition>也不是必须的。
+```
+switch <condition> {
+	case <expr1> : <statement1>
+	case <expr2> : <statement2>
+	...
+	default:
+			<statement>
+}
+```
+go语言的`switch`语句中，每个`case`语句都是独立的，并不需要`break`跳出执行。`case`语句中有`fallthrougth`关键字，会继续执行下一个`case`。
+
+`switch`后的<condition>也**不是**必须的。
 
 
 ## 函数
