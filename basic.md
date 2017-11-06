@@ -106,7 +106,7 @@ go语言支持如下运算符：
 | interface 	|							|
 | map 			|							|
 | package 		|							|
-| range 		|							|
+| range 		| 迭代器，用于slice, array, string, map, channel |
 | return 		|							|
 | select 		|							|
 | struct 		|							|
@@ -120,21 +120,17 @@ go语言支持如下运算符：
 
 | 函数名  | 说明 |
 |---------|------|
-| close   |		|
-| delete  |		|
-| len     |		|
+| close   | 用于关闭channel	|
+| delete  | 用于删除map中的实例	|
+| len     | 用于返回string, slice和array的长度 		|
 | cap 	  |		|
-| new	  |		|
-| make 	  |		|
-| append  |		|
-| copy    |		|
-| panic   |		|
-| recover |		|
-| print   |		|
-| println |		|
-| complex |		|
-| real    |		|
-| imag    |		|
+| new	  | 用于各种类型的内存分配		|
+| make 	  | 用于内建类型(map, slice, channel)的内存分配		|
+| append  | 用于追加slice		|
+| copy    | 用于复制slice		|
+| panic/recover   | 用于异常处理		|
+| print/println   | 底层的打印函数		|
+| complex/real/imag | 用于处理复数		|
 
 ## 控制结构
 
