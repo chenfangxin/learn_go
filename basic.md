@@ -26,7 +26,7 @@
 | function 				| 			 | nil	  | 函数     |
 | interface 			|			 | nil	  | 接口     |
 
-> 所谓`引用类型`是指`slice`, `map`,`channel`这三种与定义类型。创建这些类型的数据，除了要分配内存外，还需要一系列复杂的初始化工作。使用make()函数来创建。
+> 所谓`引用类型`是指`slice`, `map`,`channel`这三种预定义类型。创建这些类型的数据，除了要分配内存外，还需要一系列复杂的初始化工作。使用make()函数来创建。
 
 ## 变量和常量
 
@@ -176,7 +176,7 @@ for { // 死循环
 ```
 
 #### `switch...case`
-`switch...case`语句中，大括号也是必须的，且要与`switch`在同一行。<condition>也不是必须的。
+`switch...case`语句中，大括号也是必须的，且要与`switch`在同一行。`<condition>`也不是必须的。
 ```
 switch <condition> {
 	case <expr1> : <statement1>
@@ -188,7 +188,7 @@ switch <condition> {
 ```
 go语言的`switch`语句中，每个`case`语句都是独立的，并不需要`break`跳出执行。`case`语句中有`fallthrougth`关键字，会继续执行下一个`case`。
 
-`switch`后的<condition>**不是**必须的，每个`case`相当于一个`if`语句。
+`switch`后的`<condition>`**不是**必须的，每个`case`相当于一个`if`语句。
 
 
 ## 函数
