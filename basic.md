@@ -26,7 +26,9 @@
 | function 				| 			 | nil	  | 函数     |
 | interface 			|			 | nil	  | 接口     |
 
-> 所谓`引用类型`是指`slice`, `map`,`channel`这三种预定义类型。创建这些类型的数据，除了要分配内存外，还需要一系列复杂的初始化工作。使用make()函数来创建。
+> 所谓`引用类型`是指`slice`, `map`,`channel`这三种预定义类型。创建这些类型的数据，除了要分配内存外，还需要一系列复杂的初始化工作，所以使用make()函数来创建。
+
+> slice是指向底层array的**指针**，因此可以通过array给slice赋值; array的长度是固定的，但是slice的长度不固定。向slice添加元素，如果超过了底层array的长度，则会重新分配array。
 
 ## 变量和常量
 
@@ -36,25 +38,29 @@
 
 在go语言中，变量的声明(declare)和定义(define)是放在一起的，也就是说变量总会被初始化。在go中，有三种形式声明变量：
 ```
-var a int = 12 # 声明变量a的类型为int，并初始化为12
-var b int      # 声明变量b的类型为int，并初始化为0
-c := 12        # 声明变量c，并通过初始值推导其类型。这种形式只能在函数体中使用
+var a int = 12 // 声明变量a的类型为int，并初始化为12
+var b int      // 声明变量b的类型为int，并初始化为0
+c := 12        // 声明变量c，并通过初始值推导其类型。这种形式只能在函数体中使用
+```
 
-var ary1 [5]int # 定义一个5个int元素的array
-ary1[0] = 1     # 给array的元素赋值
+`引用类型`的变量，定义格式如下：
+```
+var ary1 [5]int // 定义一个5个int元素的array
+ary1[0] = 1     // 给array的元素赋值
 
-var ary2 [5]int{1,2,3,4,5} # 给array提供初始值 
-ary2 := [...]int{1,2,3,4,5} # 自动推导数组大小，`...`不可省略，否则成了slice
+var ary2 [5]int{1,2,3,4,5}  // 给array提供初始值 
+ary3 := [...]int{1,2,3,4,5} // 自动推导数组大小，`...`不可省略，否则成了slice
 
-var slc1 []int # 定义一个int类型的slice
-slc2 := []int{1,2,3,4,5} # 定义并初始化一个slice
-slc3 := make([]int, 5)	# 使用make函数，创建一个slice，长度和容量都设为5
+var slc1 []int  // 定义一个int类型的slice
+slc2 := []int{1,2,3,4,5}  // 定义并初始化一个slice
+slc3 := make([]int, 5)    // 使用make函数，创建一个slice，长度和容量都设为5
+slc4 = ary3[1:3]  // 使用array来初始化slice
 
-var map1 map[string]int # 声明一个map，key类型为string, value类型为int
-map1 = make(map[string]int) # 创建map
-map1["key1"] = 1 # 向map添加元素
+var map1 map[string]int  // 声明一个map，key类型为string, value类型为int
+map1 = make(map[string]int)  // 创建map
+map1["key1"] = 1  // 向map添加元素
 
-var map2 = map[string]int {} # 声明并初始化一个map
+var map2 = map[string]int {} // 声明并初始化一个map
 map2["key2"] = 2
 ```
 
@@ -66,33 +72,35 @@ var a int
 var b uint
 
 a = 15
-b = a 		# 这句会报错！
-b = uint(a) # 需要明确的类型转换
+b = a  // 这句会报错！
+b = uint(a)  // 需要明确的类型转换
 ```
 
 go语言支持平行赋值：
 ```
 var x, y int
 x, y = 12, 16
-_, b := 1, 2	# 任何给特殊的变量_赋值，都会被丢弃
+_, b := 1, 2  // 任何给特殊变量_赋值，都会被丢弃
 ```
 
 #### 常量的定义
 
 在go中，使用关键字`const`定义常量。
 ```
-const a, b = 12, 13  # 多常量初始化
-const c = "hello"	 # 类型推导
+const a, b = 12, 13  // 多常量初始化
+const c = "hello"    // 类型推导
 ```
+
+除了自定义的常量，`true`,`false`和`iota`是预定义的常量。
 
 ## 运算符
 
 go语言支持如下运算符：
 
-+ 算术运算: `*`, `/`, `%`, `+`, `++`, `-`, `--`
-+ 关系运算: `==`, `!=`, `>`, `>=`, `<`, `<=`
-+ 逻辑运算: `&&`, `||`, `!`
-+ 位运算: `<<`, `>>`, `&`, `|`, `^`, `&^`
++ 算术运算: `*`(乘), `/`(除), `%`(取余), `+`(加), `++`(自加), `-`(减), `--`(自减)
++ 关系运算: `==`(等于), `!=`(不等于), `>`(大于), `>=`(大于等于), `<`(小于), `<=`(小于等于)
++ 逻辑运算: `&&`(与), `||`(或), `!`(非)
++ 位运算: `<<`(左移), `>>`(右移), `&`(位与), `|`(位或), `^`(位异或), `&^`(位清除)
 + 赋值运算: `=`, `:=`, `+=`, `-=`, `*=`, `/=`, `%=`, `<<=`, `>>=`, `&=`, `|=`, `^=`
 + 其他运算符: `&`(一元，取地址), `*`(一元，指针变量) ,`<-`(数据流向)
 
@@ -121,7 +129,7 @@ go语言支持如下运算符：
 | if 			|							|
 | import 		|							|
 | interface 	|							|
-| map 			|							|
+| map 			| 定义map类型变量			|
 | package 		|							|
 | range 		| 迭代器，用于slice, array, string, map, channel |
 | return 		|							|
@@ -139,11 +147,11 @@ go语言支持如下运算符：
 |---------|------|
 | close   | 用于关闭channel	|
 | delete  | 用于删除map中的元素	|
-| len     | 用于返回string, slice和array的长度 		|
+| len     | 用于返回string, slice和array的长度(元素的个数)	|
 | cap 	  | 用于返回array,slice,channel的容量		|
 | new	  | 用于各种类型的内存分配		|
 | make 	  | 用于内建类型(map, slice, channel)的内存分配		|
-| append  | 用于追加slice		|
+| append  | 用于向slice追加元素 |
 | copy    | 用于复制slice		|
 | panic/recover   | 用于异常处理		|
 | print/println   | 底层的打印函数		|
@@ -152,7 +160,7 @@ go语言支持如下运算符：
 ## 控制结构
 
 #### `if...else`
-`if...else`结构中，大括号是必须的,且要与if在同一行, 
+`if...else`结构中，大括号是必须的,且左大括号要与if在同一行, 
 ```
 if <condition> { // <condition>不用小括号
 	<statement>
@@ -163,7 +171,7 @@ if <condition> { // <condition>不用小括号
 ```
 
 #### `for`循环
-go语言中`for`循环中的大括号是必须的，且要与`for`在同一行。`for`循环有3种形式：
+go语言中`for`循环中的大括号是必须的，且左大括号要与`for`在同一行。`for`循环有3种形式：
 ```
 for <init>; <condition>; <post> {
 }
@@ -176,7 +184,7 @@ for { // 死循环
 ```
 
 #### `switch...case`
-`switch...case`语句中，大括号也是必须的，且要与`switch`在同一行。`<condition>`也不是必须的。
+`switch...case`语句中，大括号也是必须的，且左大括号要与`switch`在同一行。`<condition>`也不是必须的。
 ```
 switch <condition> {
 	case <expr1> : <statement1>
