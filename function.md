@@ -13,7 +13,7 @@ func (p MYTYPE) FUNC_NAME (<arg_list>) <return_list> {
 
 > (p MYTYPE)是指定函数作用于特定的类型，此时，该函数称为方法(method)，而(p MYTYPE)称为receiver
 
-go语言，**不支持**函数的嵌套(nested)，重载(overload)和默认参数(default parameter)
+go语言，**不支持**函数的命名嵌套(nested)定义，重载(overload)和默认参数(default parameter)
 
 go语言中，函数是**第一类值**。 go程序以`main`函数作为起点。
 
@@ -37,4 +37,7 @@ go语言支持多返回值。
 + 预定义的标识符的作用域为全局块
 + 定义在任何函数之外的标识符，作用域为包块
 + 定义在函数体内的标识符，其作用域起于标识符实现的结尾，止于最内部语法块的结尾
+
+
+## 闭包
 
