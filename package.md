@@ -12,4 +12,9 @@ go语言的包管理有如下特点：
 
 `import`语句，导入的是package的目录名；而在程序中，使用的是package的名。这二者往往是同名的，虽然并不强制要求。
 
+> go语言规定`import`导入的package，必须被使用，否则会编译不过。可以使用空白标识符`_`来重命名不用的package
+
+## package的init函数
+
+每个package都可以包含**任意多个**`init`函数，这些`init`函数会在`main`之前执行。`init`函数被用来作初始化工作。
 
