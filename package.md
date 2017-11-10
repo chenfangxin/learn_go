@@ -10,9 +10,12 @@ go语言的包管理有如下特点：
 
 要生成go可执行文件，必须有一个package名为`main`，并且该package中必须有一个名为`main`的函数，作为程序的入口。
 
-`import`语句，导入的是package的目录名；而在程序中，使用的是package的名。这二者往往是同名的，虽然并不强制要求。
+`import`语句中指定的是package所在的目录名；而在程序中，通过package名来使用package。这二者往往是同名的，虽然并不强制要求。
+
+go语言规定：在package中，首字母**大写**的标识符(变量，函数等)是公开的，可以被外界访问；首字母**小写**的标识符是package私有的。
 
 > go语言规定`import`导入的package，必须被使用，否则会编译不过。可以使用空白标识符`_`来重命名不用的package
+
 
 ## package的init函数
 
