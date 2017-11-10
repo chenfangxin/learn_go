@@ -19,5 +19,5 @@ go语言规定：在package中，首字母**大写**的标识符(变量，函数
 
 ## package的init函数
 
-每个package都可以包含**任意多个**`init`函数，这些`init`函数会在`main`之前执行。`init`函数被用来作初始化工作。
+package的`init`函数没有参数和返回值，每个package都可以包含**任意多个**`init`函数，这些`init`函数会在`main`之前执行。`init`函数被用来作初始化工作。
 
