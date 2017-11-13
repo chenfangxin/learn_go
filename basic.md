@@ -62,6 +62,31 @@ map1["key1"] = 1  // 向map添加元素
 
 var map2 = map[string]int {} // 声明并初始化一个map
 map2["key2"] = 2
+
+```
+
+#### 指针
+
+go语言中，指针相当于**引用**。指针的使用方式如下：
+```
+var a int
+var p *int = &a
+*p = 12
+
+type myPoint struct{
+	x int
+	y int
+}
+
+var pos myPoint
+var mypos *myPoint = &pos
+mypos.x = 3
+mypos.y = 4
+
+mypos = new(myPoint)
+mypos.x = 4
+mypos.y = 5
+
 ```
 
 #### 变量的赋值
