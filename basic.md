@@ -43,16 +43,16 @@
 var a int = 12 // 声明变量a的类型为int，并初始化为12
 var b int      // 声明变量b的类型为int，并初始化为0
 c := 12        // 声明变量c，并通过初始值推导其类型。这种形式只能在函数体中使用
-```
 
-`引用类型`的变量，定义格式如下：
-```
 var ary1 [5]int // 定义一个5个int元素的array
 ary1[0] = 1     // 给array的元素赋值
 
 var ary2 [5]int{1,2,3,4,5}  // 给array提供初始值 
 ary3 := [...]int{1,2,3,4,5} // 自动推导数组大小，`...`不可省略，否则成了slice
+```
 
+`引用类型`的变量，定义格式如下：
+```
 var slc1 []int  // 定义一个int类型的slice
 slc2 := []int{1,2,3,4,5}  // 定义并初始化一个slice
 slc3 := make([]int, 5)    // 使用make函数，创建一个slice，长度和容量都设为5
@@ -64,8 +64,23 @@ map1["key1"] = 1  // 向map添加元素
 
 var map2 = map[string]int {} // 声明并初始化一个map
 map2["key2"] = 2
-
 ```
+
+#### 结构体类型
+使用关键字`type`和`struct`来创建自定义结构体类型：
+```
+type myPoint struct {  // 定义新的结构体myPoint
+	x int  // 成员名和类型
+	y int
+}
+
+var pos myPoint // 定义结构体变量
+pos.x = 3  // 给成员赋值
+pos.y = 4
+```
+
+使用`.`操作符来访问结构体的成员
+
 
 #### 指针
 
@@ -73,7 +88,8 @@ go语言中，指针相当于**引用**，所以没有必要使用**引用类型
 
 ```
 var a int
-var p *int = &a
+var p *int  // 定义指向int类型值的指针
+p = &a  // 给指针赋值
 *p = 12
 
 type myPoint struct{
