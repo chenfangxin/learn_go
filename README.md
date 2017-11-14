@@ -7,3 +7,4 @@
 + [语言基础](basic.md)
 + [函数和方法](function.md)
 + [包管理](package.md)
++ [并发](concurrency.md)
