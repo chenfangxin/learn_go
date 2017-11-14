@@ -26,6 +26,8 @@
 | function 				| 			 | nil	  | 函数     |
 | interface 			|			 | nil	  | 接口     |
 
+> go语言中，数组(array)是值类型，意味着数组变量之间赋值会**拷贝**
+
 > 所谓`引用类型`是指`slice`, `map`,`channel`这三种预定义类型。创建这些类型的数据，除了要分配内存外，还需要一系列复杂的初始化工作，所以使用make()函数来创建。
 
 > slice是指向底层array的**指针**，因此可以通过array给slice赋值; array的长度是固定的，但是slice的长度不固定。向slice添加元素，如果超过了底层array的长度，则会重新分配array。
