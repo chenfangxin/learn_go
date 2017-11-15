@@ -69,6 +69,12 @@ func A(){
 	for i:=0; i<5; i++ {
 		defer f_A(i) // 定义多个defer，并传入参数
 	}
+	
+	for i; i<5; i++ {
+		defer func(){ // 定义匿名函数，并在defer语句中执行，注意i的值
+			fmt.Printf("in func: i=%d\n", i)
+		}()
+	}
 }
 ```
 ## 匿名函数
