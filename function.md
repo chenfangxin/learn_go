@@ -71,12 +71,13 @@ func A(){
 	}
 	
 	for i; i<5; i++ {
-		defer func(){ // 定义匿名函数，并在defer语句中执行，注意i的值
+		defer func(){ // 定义匿名函数，并在defer语句中注册，注意i的值
 			fmt.Printf("in func: i=%d\n", i)
 		}()
 	}
 }
 ```
+
 ## 匿名函数
 
 在go语言中，函数体中**只允许**嵌套定义匿名函数。示例如下：
@@ -90,3 +91,7 @@ func main(){
 
 ```
 ## 闭包
+
+## 异常机制
+在go语言中，用`panic/recover`模式来处理异常。
+
