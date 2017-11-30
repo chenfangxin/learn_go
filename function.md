@@ -22,7 +22,7 @@ func (p MYTYPE)FUNC_NAME (<arg_list>) <return_list> {
 }
 ```
 
-方法的定义格式中，`(p MYTYPE)`称为接收者(receiver)。`MYTYPE`是与函数关联的类型，`p`称为接收者变量，可以在函数体中使用该变量(相当于C++中的this指针)。
+方法的定义格式中，`(p MYTYPE)`称为接收者(receiver)。`MYTYPE`是与函数关联的类型，`p`称为接收者变量，可以在函数体中使用该变量(相当于C++中的this指针)。go语言的这种给类型添加方法的方式，成为**非侵入式**。
 
 go语言，**不支持**函数的命名嵌套(nested)定义，重载(overload)和默认参数(default parameter)
 
